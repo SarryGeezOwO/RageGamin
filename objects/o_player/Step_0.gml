@@ -16,15 +16,21 @@ yVel += grav
 // Jumping
 isJumping = jump_key * (jump_timer < jump_max_time)
 if (jump_key_rel) {
-    jump_timer = 0
+    can_jump = false
 }
 
-if (isJumping) {
+if (isGround) {
+    jump_timer = 0
+    can_jump = true
+}
+
+if (isJumping && can_jump) {
     jump_timer += global.dt_sec * isJumping
     jump_timer = clamp(jump_timer, 0, jump_max_time)
     var jump_t = inverse_lerp(jump_timer, 0, jump_max_time)
     yVel = -(jump_force * (1 + lerp(0, jump_max_force_mult, 1 - jump_t)))
 }
+
 
 // Collision checks
 var sub_pixel = 0.25 * sign(xVel)

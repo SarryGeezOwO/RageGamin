@@ -12,6 +12,7 @@ jump_max_force_mult = 1.5 // 1 is added on the calculation (true -> 2.5)
 
 // Non-Editable
 can_move = true
+can_jump = true
 
 isGround = false
 isMoving = false
